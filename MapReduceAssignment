@@ -1,0 +1,62 @@
+Dataset
+CallerID   RecieverID  CallStartTime      CallEndTime         (1-Local,0-ISD)
+9665128505,8983006310,2015-03-01 09:08:10,2015-03-01 10:12:15,1
+9665128505,8983006310,2015-03-01 07:08:10,2015-03-01 08:12:15,0
+9665128505,8983006310,2015-03-01 09:08:10,2015-03-01 09:12:15,1
+9665128505,8983006310,2015-03-01 09:08:10,2015-03-01 10:12:15,0
+9665128506,8983006310,2015-03-01 09:08:10,2015-03-01 10:12:15,1
+9665128507,8983006310,2015-03-01 09:08:10,2015-03-01 09:12:15,1
+
+Telephone Company keeps track of every call made using its services. 
+Problem Statement - Find out the list of customers who have the total call time in long-distance calls of more than 60 minutes
+
+
+
+Business Logic: 
+Totalcalltime > 60 min which 
+TotalCallTIme = CallEndTime - CallStartTime (provided both are same format)
+tomillis -> This function parses through format and gives output in milisecond
+TotalCallTIme[millisecond] = tomillis(CallEndTime) - tomillis(CallStartTime)
+TotalCallTIme[minutes] = TotalCallTIme[millisec]/60*1000
+
+(key,value) = (callerId,TotalCallTIme[minutes])
+
+1. Mapper Class: Filter Data [Key,Value] 
+------------------------------------------------------------------------------------------------------------
+1.1 - Filter : Long Distance Call [flag == 1]
+Filter data based on flag, Remove data having flag 0
+
+9665128505,8983006310,2015-03-01 09:08:10,2015-03-01 10:12:15,1
+9665128505,8983006310,2015-03-01 09:08:10,2015-03-01 09:12:15,1
+9665128506,8983006310,2015-03-01 09:08:10,2015-03-01 10:12:15,1
+9665128507,8983006310,2015-03-01 09:08:10,2015-03-01 09:12:15,1
+
+1.2 - Mapper Output which becomes input to Sort and Shuffle
+9665128505, --
+9665128505, --
+9665128506, --
+9665128507, --
+
+2 Sort and Shuffle - Sorts the Data, then maps all value with same key so that each and every unique
+------------------------------------------------------------------------------------------------------------
+9665128505, {--, --} merge keys for same number and place in {}
+9665128506, --
+9665128507, --
+
+3. Reducer - Executes Business Logic
+------------------------------------------------------------------------------------------------------------
+3.1
+9665128505, {--, --} 
+9665128506, --
+9665128507, --
+
+3.2
+9665128505, -- eg 45 min (aggregate from 3.1) 
+9665128506, -- 65 min
+9665128507, -- 120 min
+
+3.3 Final Output
+9665128506, -- 65 min
+9665128507, -- 120 min
+
+
