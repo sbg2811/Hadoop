@@ -73,7 +73,9 @@ Programming Logic
 Programming Logic
 1. For loop to travers the value array
 2. sum = sum + value
-3. 
+3. if sum > 60
+4. Output key, value
+
 3.2
 9665128505, -- eg 45 min (aggregate from 3.1) 
 9665128506, -- 65 min
