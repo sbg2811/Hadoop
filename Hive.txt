@@ -1,0 +1,21 @@
+Hive is datawarehouse infrastructe on top of hadoop
+Hive uses mapreduce for processing data, hdfs for storage
+Hive 95% of corrected data only 
+
+RDBMS                               Hive
+Read Write Many times               Read Many times, write once
+Read no schema validation           Read schema validation as read enforces schema rules
+Write enforce schema validation     Write no schema validation 
+
+Hive Architecure
+Hive WebUI          CLI         HD Insight
+Metastore       Hive Server HQL Process Engine->execution Engine->Map Reduce
+HDFS ir HBASE Data Storage
+
+
+When we install Hive, Metastore and Hive Server is installed
+Metastore - RDBMS system (derby - single session, Mysql, Oracle) It contains complete information/metadata of table, storage, columns etc
+
+
+
+
