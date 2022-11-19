@@ -1,0 +1,23 @@
+set hive.cli.print
+set hive.cli.print.current.db=true
+
+show tables;
+
+describe tablename; --table schema
+describe extended tablename; --detail table information
+describe formatted tablename; --detail table information (formatted)
+
+load data local inpath 
+
+serde - Its library used for serialization and deserilization (cluster there are multinode, data needs to travel between nodes)
+
+Managed (Internal) Table - managed and owned by table only 
+
+External Table - not managed by table (multiple user using external table, if someone drops the table, then its not deleted)
+
+create external table (columninformation....) 
+row format 
+delimited fields terminated by ',' 
+stored as textfile;
+
+
