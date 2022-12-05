@@ -1,0 +1,16 @@
+Link for executable available on google drive
+
+1.Download Oracle VM Box Manager
+2.Download hadoopvm.ova (save the path of file)
+3.Import Machine (give hadoopvm.ova file path)
+4.After Impot Righ Panel will see Ubuntu1
+5.Click Start (VM will start)
+6.With this multiple frameworkds are installed scala, flume, hive, spark etc.
+7.terminal 
+start-dfs.sh (this starts distributed file system)
+start-yarn.sh (this start resourse manager)
+jps (give list of dfs and resource manager process running) this shows hadoop is running fine
+
+GUI for https://localhost:9870/
+
+
